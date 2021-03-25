@@ -1,0 +1,63 @@
+{
+	"clang-format.style": false,
+	"files.exclude": {
+		"app/out/**/*.map": true,
+		"**/.submodule": true,
+		"**/.github": true,
+		"**/.gitlab": true,
+		"**/.husky/_": true,
+		"**/.husky/.gitignore": true,
+		"app/tsconfig.vue.json": true,
+		"vetur.config.js": true,
+		"**/.vue": true
+	},
+	"path-intellisense.mappings": {
+	  "@": "${workspaceRoot}/app/src",
+	  "@about": "${workspaceRoot}/app/src/routes/about"
+	},
+	"eslint.workingDirectories": [
+		{
+			"directory": "${workspaceRoot}/app",
+			"changeProcessCWD": true
+		}
+	],
+	"prettier.configPath": "app/.prettierrc",
+	"commitlint.config.file": "tools/config/commitlint.config.js",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[vue]": {
+		"editor.defaultFormatter": "octref.vetur"
+	},
+	"go.lintTool": "golangci-lint",
+	"protoc": {
+		"compile_on_save": false,
+		"options": ["--proto_path=${workspaceRoot}/proto", "--proto_path=/usr/include/google/protobuf", "--proto_path=/usr/local/include/google/protobuf"]
+	},
+	"cSpell.words": [
+		"Assemblyscript",
+		"MINVER",
+		"Proto",
+		"Uncapitalize",
+		"assemblyscript",
+		"binaryen",
+		"commitlint",
+		"corejs",
+		"etag",
+		"grpc",
+		"grpcweb",
+		"lookpath",
+		"nodelib",
+		"pinia",
+		"protoc",
+		"toplevel",
+		"unmount",
+		"vuex",
+		"wasm",
+		"webassembly",
+		"webpackbar"
+	]
+}

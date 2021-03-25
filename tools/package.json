@@ -1,0 +1,17 @@
+{
+	"scripts": {
+		"postinstall": "cd ..  && husky install ./tools/config/.husky",
+		"app": "cd ../app && yarn && yarn start",
+		"server": "cd ../server && go mod download && go run ."
+	},
+	"dependencies": {
+		"ts-protoc-gen": "0.14.0",
+		"@commitlint/cli": "12.0.1",
+		"@commitlint/config-conventional": "12.0.1",
+		"@nodelib/fs.walk": "1.2.6",
+		"commitlint-config-jira": "1.5.1",
+		"commitlint-plugin-jira-rules": "1.5.1",
+		"husky": "5.2.0",
+		"lookpath": "1.2.0"
+	}
+}

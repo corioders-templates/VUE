@@ -1,0 +1,101 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/app'
+    open-pull-requests-limit: 0
+    schedule:
+      interval: 'weekly'
+      time: '10:00'
+    reviewers:
+      - '___TEMPLATE_PROJECT_GITHUB_USERNAME___'
+    ignore:
+      - dependency-name: "@babel/core"
+      - dependency-name: "@babel/eslint-parser"
+      - dependency-name: "@babel/plugin-transform-runtime"
+      - dependency-name: "@babel/preset-env"
+      - dependency-name: "@babel/runtime"
+      - dependency-name: "@soda/friendly-errors-webpack-plugin"
+      - dependency-name: "@trivago/prettier-plugin-sort-imports"
+      - dependency-name: "@types/google-protobuf"
+      - dependency-name: "@types/webpack-env"
+      - dependency-name: "@typescript-eslint/eslint-plugin"
+      - dependency-name: "@typescript-eslint/parser"
+      - dependency-name: "babel-loader"
+      - dependency-name: "browser-sync"
+      - dependency-name: "browser-sync-webpack-plugin"
+      - dependency-name: "chalk"
+      - dependency-name: "clean-webpack-plugin"
+      - dependency-name: "cross-env"
+      - dependency-name: "css-loader"
+      - dependency-name: "css-minimizer-webpack-plugin"
+      - dependency-name: "cypress"
+      - dependency-name: "cypress-dotenv"
+      - dependency-name: "dotenv"
+      - dependency-name: "eslint"
+      - dependency-name: "eslint-webpack-plugin"
+      - dependency-name: "html-webpack-plugin"
+      - dependency-name: "ip"
+      - dependency-name: "jest"
+      - dependency-name: "md5"
+      - dependency-name: "mini-css-extract-plugin"
+      - dependency-name: "node-sass-glob-importer"
+      - dependency-name: "postcss-loader"
+      - dependency-name: "postcss-preset-env"
+      - dependency-name: "sass"
+      - dependency-name: "sass-loader"
+      - dependency-name: "style-loader"
+      - dependency-name: "terser-webpack-plugin"
+      - dependency-name: "ts-loader"
+      - dependency-name: "typescript"
+      - dependency-name: "webpack"
+      - dependency-name: "webpack-bundle-analyzer"
+      - dependency-name: "webpack-cli"
+      - dependency-name: "webpack-dev-server"
+      - dependency-name: "webpackbar"
+      - dependency-name: "@corioders/jskit"
+      - dependency-name: "core-js"
+      - dependency-name: "@improbable-eng/grpc-web"
+      - dependency-name: "google-protobuf"
+      - dependency-name: "@vue/compiler-sfc"
+      - dependency-name: "@vue/test-utils"
+      - dependency-name: "eslint-plugin-vue"
+      - dependency-name: "vue-loader"
+      - dependency-name: "pinia"
+      - dependency-name: "vue"
+      - dependency-name: "vue-router"
+
+  - package-ecosystem: 'npm'
+    directory: '/tools'
+    open-pull-requests-limit: 0
+    schedule:
+      interval: 'weekly'
+      time: '10:00'
+    reviewers:
+      - '___TEMPLATE_PROJECT_GITHUB_USERNAME___'
+    ignore:
+      - dependency-name: 'ts-protoc-gen'
+      - dependency-name: '@commitlint/cli'
+      - dependency-name: '@commitlint/config-conventional'
+      - dependency-name: '@nodelib/fs.walk'
+      - dependency-name: 'commitlint-config-jira'
+      - dependency-name: 'commitlint-plugin-jira-rules'
+      - dependency-name: 'husky'
+      - dependency-name: 'lookpath'
+
+  - package-ecosystem: 'gomod'
+    directory: '/server'
+    open-pull-requests-limit: 0
+    schedule:
+      interval: 'weekly'
+      time: '10:00'
+    reviewers:
+      - '___TEMPLATE_PROJECT_GITHUB_USERNAME___'
+    ignore:
+      - dependency-name: 'github.com/desertbit/timer'
+      - dependency-name: 'github.com/golang/protobuf'
+      - dependency-name: 'github.com/improbable-eng/grpc-web'
+      - dependency-name: 'github.com/mwitkow/go-conntrack'
+      - dependency-name: 'github.com/rs/cors'
+      - dependency-name: 'google.golang.org/grpc'
+      - dependency-name: 'google.golang.org/protobuf'
+      - dependency-name: 'nhooyr.io/websocket'

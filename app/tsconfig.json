@@ -1,0 +1,54 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+
+		"incremental": true,
+
+		"moduleResolution": "node",
+		"types": [
+			"./node_modules/@types/webpack-env"
+		],
+		
+		"module": "esnext",
+		"target": "esnext",
+		"lib": [
+			"ESNext",
+			"DOM"
+		],
+
+		"baseUrl": ".",
+		"rootDir": "./src",
+		"paths": {
+		  "@/*": [
+		    "./src/*"
+		  ],
+		  "@about/*": [
+		    "src/routes/about/*"
+		  ]
+		},
+
+		"strict": true,
+		"allowJs": false,
+    "checkJs": false,
+		"alwaysStrict": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": false,
+		"noImplicitThis": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true
+	},
+	"include": [
+		"./src/**/*.ts",
+		"./src/**/*.vue"
+	],
+	"exclude": [
+		"./src/**/*.test.ts"
+	],
+	"references": [
+		{
+			"path": "./config/tsconfig/tsconfig.jest.json"
+		}
+	]
+}

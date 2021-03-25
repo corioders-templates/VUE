@@ -1,0 +1,89 @@
+name: Server Tests
+
+on: pull_request
+
+jobs:
+  Build-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'server'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Get Go latest version
+        id: go_version
+        run: |
+          echo ::set-output name=latest::$(curl -s https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json | grep -oE '"version": "[0-9]{1}.[0-9]{1,}(.[0-9]{1,})?"' | head -1 | cut -d':' -f2 | sed 's/ //g; s/"//g')
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ steps.go_version.outputs.latest }}
+
+      - name: Get Go cache directories
+        id: cache_directories
+        run: |
+          echo ::set-output name=gocache::$(go env GOCACHE)
+          echo ::set-output name=gomodcache::$(go env GOMODCACHE)
+
+      - name: Setup cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.cache_directories.outputs.gomodcache }}
+            ${{ steps.cache_directories.outputs.gocache }}
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install dependencies and Build app
+        run: |
+          go vet ./...
+          go build -v -o main ./app
+
+  Unit-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'server'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Get Go latest version
+        id: go_version
+        run: |
+          echo ::set-output name=latest::$(curl -s https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json | grep -oE '"version": "[0-9]{1}.[0-9]{1,}(.[0-9]{1,})?"' | head -1 | cut -d':' -f2 | sed 's/ //g; s/"//g')
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ steps.go_version.outputs.latest }}
+
+      - name: Get Go cache directories
+        id: cache_directories
+        run: |
+          echo ::set-output name=gocache::$(go env GOCACHE)
+          echo ::set-output name=gomodcache::$(go env GOMODCACHE)
+
+      - name: Setup cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.cache_directories.outputs.gomodcache }}
+            ${{ steps.cache_directories.outputs.gocache }}
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install Test dependencies
+        run: go get -v github.com/rakyll/gotest
+
+      - name: Install dependencies and Run Tests
+        run: gotest ./...

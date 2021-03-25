@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "___TEMPLATE_REPO_URL___/app/routes/grpcweb/service/proto";
+
+package pb;
+
+import "errors/errors.proto";
+
+message EchoRequest {
+	string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+	Error error = 2;
+}
+
+service EchoService {
+	rpc Echo(EchoRequest) returns (EchoResponse);
+	rpc EchoServerStream(EchoRequest) returns (stream EchoResponse);
+	rpc EchoClientStream(stream EchoRequest) returns (EchoResponse);
+	rpc EchoBidirectionalStream(stream EchoRequest) returns (stream EchoResponse);
+}

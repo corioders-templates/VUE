@@ -1,0 +1,16 @@
+{
+	"extends": "./../../tsconfig.json",
+	"compilerOptions": {
+		"composite": true,
+		"types": [
+			"./../../node_modules/@types/jest"
+		],
+		"lib": [
+			"ESNext"
+		],
+	},
+	"include": [
+		"./../../src/**/*.test.ts",
+	],
+	"exclude": []
+}

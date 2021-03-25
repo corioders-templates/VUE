@@ -1,0 +1,26 @@
+%base-link {
+	font-weight: 700;
+	color: $dark;
+	text-decoration: none;
+	margin: 0 5px;
+
+	&:hover {
+		color: $accent;
+	}
+}
+
+%router-link {
+	@extend %base-link;
+
+	&.router-link-exact-active {
+		color: $accent;
+	}
+}
+
+%a-link {
+	@extend %base-link;
+	color: $accent;
+	&:hover {
+		color: $dark;
+	}
+}

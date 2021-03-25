@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "___TEMPLATE_REPO_URL___/app/routes/grpcweb/service/proto/errors";
+
+package pb;
+
+
+message Error {
+	string msg = 1;
+}

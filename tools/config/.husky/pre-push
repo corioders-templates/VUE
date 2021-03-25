@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PROTECTED_BRANCHES="^(___TEMPLATE_BRANCHES___)"
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
+	echo -e "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use pull request.\n"
+	exit 1
+fi
+
+exit 0

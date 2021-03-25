@@ -1,0 +1,67 @@
+## Global
+# Dotenv environment variables file
+.env
+
+# Dependency directories
+node_modules
+package-lock.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+## Tools
+
+# Husky
+tools/config/husky/_
+
+
+## App
+
+# Compiled output
+app/out
+
+# Logs
+app/logs
+app/*.log
+
+# Optional npm cache directory
+app/.npm
+
+# Optional eslint cache
+app/.eslintcache
+
+# Cypress screenshots and videos
+app/tests/e2e/screenshots/
+app/tests/e2e/videos/
+
+
+## Server
+
+# Binaries
+server/server
+server/app/app
+
+server/*.exe
+server/*.exe~
+server/*.dll
+server/*.so
+server/*.dylib
+
+
+# Test binary, built with `go test -c`
+server/*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+server/*.out
+
+# Debugging
+__debug_bin
+
+
+## System Files
+
+.DS_Store
+Thumbs.db
