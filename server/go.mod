@@ -9,3 +9,5 @@ require (
 	google.golang.org/grpc v1.36.1
 	google.golang.org/protobuf v1.26.0
 )
+
+replace github.com/corioders/gokit => /Users/wiktorjurkiewicz/repos/01_CORIODER/@@_PROJECTS/kit/gokit

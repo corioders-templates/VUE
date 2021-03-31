@@ -19,17 +19,31 @@ func newRouter(app *foundation.Application) (http.Handler, error) {
 	)
 	_ = routerLogger
 
+	v1 := router.NewGroup("/v1")
+	// =========================================================================
+	// grpcweb
+
 	grpcwebHandlerFactory, err := grpcweb.NewHandler(app)
 	if err != nil {
 		return nil, err
 	}
-	router.HandleAll("/v1/grpcweb/*", grpcwebHandlerFactory("/v1/grpcweb/"))
+	v1.HandleAll("/grpcweb/*", grpcwebHandlerFactory("/grpcweb/"))
 
-	testRouteHandler, err := testRoute.NewHandler(app)
+	// =========================================================================
+	// testRoute
+
+	testRouteHandler, err := testRoute.NewHandler()
 	if err != nil {
 		return nil, err
 	}
-	router.Handle("GET", "/v1/testRoute", testRouteHandler)
+
+	testRouteLogin, testRouteVerify, err := testRoute.NewAccesscontrol()
+	if err != nil {
+		return nil, err
+	}
+
+	v1.Handle("GET", "/testRouteLogin", testRouteLogin)
+	v1.Handle("GET", "/testRoute", testRouteHandler, testRouteVerify)
 
 	return router, nil
 }
