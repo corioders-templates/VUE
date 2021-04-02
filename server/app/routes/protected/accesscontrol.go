@@ -1,4 +1,4 @@
-package testRoute
+package protected
 
 import (
 	"context"
@@ -16,8 +16,7 @@ var (
 )
 
 var (
-	roleNormal    = roleManager.MustNewRole("role normal", permissionNormal)
-	roleNotNormal = roleManager.MustNewRole("role not normal")
+	roleNormal = roleManager.MustNewRole("role normal", permissionNormal)
 )
 
 func NewAccesscontrol() (login web.Handler, verify web.Middleware, err error) {
@@ -26,11 +25,18 @@ func NewAccesscontrol() (login web.Handler, verify web.Middleware, err error) {
 		return nil, nil, err
 	}
 
-	login = ac.NewLogin(func(ctx context.Context, r *http.Request) (claims interface{}, roleGranted *role.Role, shouldLogin bool, err error) {
+	lah := func(ctx context.Context, r *http.Request) (claims interface{}, roleGranted *role.Role, shouldLogin bool, err error) {
 		return nil, roleNormal, true, nil
-	})
+	}
+	login, err = ac.NewLogin(lah)
+	if err != nil {
+		return nil, nil, err
+	}
 
-	verify = ac.NewVerify([]*role.Permission{permissionNormal})
+	verify, err = ac.NewVerify([]*role.Permission{permissionNormal})
+	if err != nil {
+		return nil, nil, err
+	}
 
 	return login, verify, nil
 }

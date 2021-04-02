@@ -2,7 +2,7 @@ package main
 
 import (
 	"___TEMPLATE_REPO_URL___/app/routes/grpcweb"
-	"___TEMPLATE_REPO_URL___/app/routes/testRoute"
+	"___TEMPLATE_REPO_URL___/app/routes/protected"
 	"___TEMPLATE_REPO_URL___/foundation"
 	"net/http"
 
@@ -30,20 +30,20 @@ func newRouter(app *foundation.Application) (http.Handler, error) {
 	v1.HandleAll("/grpcweb/*", grpcwebHandlerFactory("/grpcweb/"))
 
 	// =========================================================================
-	// testRoute
+	// protected
 
-	testRouteHandler, err := testRoute.NewHandler()
+	protectedHandler, err := protected.NewHandler()
 	if err != nil {
 		return nil, err
 	}
 
-	testRouteLogin, testRouteVerify, err := testRoute.NewAccesscontrol()
+	protectedLogin, protectedVerify, err := protected.NewAccesscontrol()
 	if err != nil {
 		return nil, err
 	}
 
-	v1.Handle("GET", "/testRouteLogin", testRouteLogin)
-	v1.Handle("GET", "/testRoute", testRouteHandler, testRouteVerify)
+	v1.Handle("GET", "/protected/login", protectedLogin)
+	v1.Handle("GET", "/protected", protectedHandler, protectedVerify)
 
 	return router, nil
 }

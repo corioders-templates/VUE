@@ -1,4 +1,4 @@
-package testRoute
+package protected
 
 import (
 	"context"
@@ -8,14 +8,14 @@ import (
 )
 
 func NewHandler() (web.Handler, error) {
-	return func(ctx context.Context, rw http.ResponseWriter, r *http.Request) error {
+	return func(ctx context.Context, rw http.ResponseWriter, _ *http.Request) error {
 		select {
 		case <-ctx.Done():
-			return nil
+			return ctx.Err()
 		default:
 		}
 
-		_, err := rw.Write([]byte("<h1>test</h1>"))
+		_, err := rw.Write([]byte("<h1>Protected content!</h1>"))
 		if err != nil {
 			return err
 		}
