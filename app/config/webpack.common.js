@@ -32,13 +32,6 @@ const paths = {
 };
 
 const options = {};
-options.postcss = {
-	postcssOptions: { plugins: ['postcss-preset-env'] },
-};
-options.sass = {
-	additionalData: `@use './scss/global/*.scss' as *;`,
-	sassOptions: { includePaths: [paths.src], importer: require('node-sass-glob-importer')() },
-};
 options.babel = {
 	configFile: paths.babelConfig,
 	cacheDirectory: true,
@@ -51,6 +44,13 @@ options.ts = {
 };
 options.vue = {
 	exposeFilename: config.IS_DEBUG || !config.IS_PRODUCTION,
+};
+options.postcss = {
+	postcssOptions: { plugins: ['postcss-preset-env'] },
+};
+options.sass = {
+	additionalData: `@use './scss/global/*.scss' as *;`,
+	sassOptions: { includePaths: [paths.src], importer: require('node-sass-glob-importer')() },
 };
 
 const fileName = config.IS_PRODUCTION && !config.IS_ANALYZE ? '[contenthash]' : '[name]';
@@ -76,7 +76,7 @@ const webpack = {
 
 	resolve: {
 		alias: {
-			...aliases
+			...aliases,
 		},
 		extensions: ['.ts', '.js'],
 	},
@@ -92,6 +92,13 @@ const webpack = {
 		rules: [
 			// =========================================================================
 			// loaders
+			{
+				test: /\.js$/,
+				exclude: /node_modules\/(core-js).*/is,
+				loader: 'babel-loader',
+				options: options.babel,
+				include: config.IS_FAST ? paths.src : undefined,
+			},
 			{
 				test: /\.ts$/,
 				use: [
@@ -114,13 +121,6 @@ const webpack = {
 				],
 			},
 			{
-				test: /\.js$/,
-				exclude: /node_modules\/(core-js).*/is,
-				loader: 'babel-loader',
-				options: options.babel,
-				include: config.IS_FAST ? paths.src : undefined,
-			},
-			{
 				test: /\.scss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
@@ -139,6 +139,10 @@ const webpack = {
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				options: options.vue,
+			},
+			{
+				test: /\.html$/,
+				loader: 'html-loader',
 			},
 
 			// =========================================================================
